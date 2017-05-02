@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	>
+
+<h:head>
+	<title>toDoList - Modificar usuario</title>
+</h:head>
+
+<h:body>
+	<f:metadata>
+    	<!-- En caso de no tener sesion se redirige a login -->
+    	<f:event type="preRenderView" listener="#{usuarioBean.verificarSesion}" />
+    	<!-- En caso de no tener permisos de admin se redirige a tareas -->
+    	<f:event type="preRenderView" listener="#{usuarioBean.verificarUsuario}" />
+	</f:metadata>
+	
+	<ui:include src="/navbar.xhtml" />
+
+	<div class="panel-body">
+		<h:form id="formId" name="formId">
+			<!-- Guardo el antiguo nombre del usuario para hacer el UPDATE -->
+				<h:inputHidden value="#{usuarioBean.usuario}" id="usuarioAntiguo" name="formId:usuarioAntiguo"></h:inputHidden> 
+			<h3>Modificar usuario</h3>
+			
+			<h:panelGrid columns="3">											
+				<h:outputLabel for="usuario">Usuario:</h:outputLabel>
+				<h:inputText value="#{usuarioBean.usuario}" />
+				<br />
+				<br />	
+				<h:outputLabel for="tipo">Tipo:</h:outputLabel>
+				<h:selectOneMenu value = "#{usuarioBean.tipo}"> 					
+	   				<f:selectItem itemValue = "1" itemLabel = "Administrador" /> 
+	   				<f:selectItem itemValue = "2" itemLabel = "Usuario" /> 
+				</h:selectOneMenu>
+				<br />
+				<br />	
+				
+				<h:outputLabel for="condicion">Codición:</h:outputLabel>
+				<h:selectOneMenu value = "#{usuarioBean.condicion}"> 
+	   				<f:selectItem itemValue = "Activo" itemLabel = "Activo" /> 
+	   				<f:selectItem itemValue = "Inactivo" itemLabel = "Inactivo" /> 
+				</h:selectOneMenu>
+       	  	</h:panelGrid>
+       	  	<br />	
+       	  	<h:commandButton id="guardar" action="#{usuarioBean.update(usuarioBean.usuario,usuarioBean.tipo,usuarioBean.condicion)}"	value="Guardar cambios">
+			</h:commandButton> | <h:link value="Volver" outcome="listaDeUsuarios" />
+		</h:form>
+	</div>
+	
+</h:body>
+</html>

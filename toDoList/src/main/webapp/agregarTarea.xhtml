@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title>toDoList - Agregar tarea</title>
+	<link rel="stylesheet" type="text/css" href="css/table-style.css" />
+</h:head>
+
+<h:body>
+	<!-- En caso de no tener sesion se redirige a login -->
+	<f:metadata>
+    	<f:event type="preRenderView" listener="#{usuarioBean.verificarSesion}" />
+	</f:metadata>
+	
+	<ui:include src="/nabvar.xhtml" /> 
+
+	<h2>Agregar tarea</h2>
+	
+	<h:form>
+		<h:panelGrid columns="2" border="0">	
+						
+			<h:outputLabel for="descripcion">Descripcion:</h:outputLabel>
+			<h:inputTextarea cols="30" rows="5" type="descripcion" 
+					value="#{tareaBean.descripcion}" id="descripcion">
+			</h:inputTextarea>
+			
+			<h:outputLabel for="fecha">Fecha:</h:outputLabel>
+			<h:inputText value="#{tareaBean.fecha}" id="fecha"></h:inputText>
+				
+			<h:outputLabel for="estadoTarea">Estado:</h:outputLabel>
+			<h:selectOneMenu value = "#{tareaBean.estadoTarea}"> 
+   				<f:selectItem itemValue = "1" itemLabel = "Pendiente" /> 
+   				<f:selectItem itemValue = "2" itemLabel = "Completa" /> 
+			</h:selectOneMenu>
+			
+			<h:outputLabel for="tipoTarea">Privacidad:</h:outputLabel>
+			<h:selectOneMenu value = "#{tareaBean.tipoTarea}"> 
+   				<f:selectItem itemValue = "1" itemLabel = "Privada" /> 
+   				<f:selectItem itemValue = "2" itemLabel = "Pública" /> 
+			</h:selectOneMenu>
+			<br />
+			
+			<h:outputLabel for="modoTarea">Modo:</h:outputLabel>
+			<h:selectOneMenu value = "#{tareaBean.modoTarea}"> 
+   				<f:selectItem itemValue = "1" itemLabel = "Lectura" /> 
+   				<f:selectItem itemValue = "2" itemLabel = "Escritura" /> 
+			</h:selectOneMenu>
+				
+		</h:panelGrid>
+		<!-- Guardo el id del usuario que la crea -->
+		<h:inputHidden value="#{sessionScope.usuario.id}" id="nombreUsuario" name="formId:nombreUsuario"></h:inputHidden>
+		
+		<h:commandButton action="#{tareaBean.agregarUsuario(sessionScope.usuario.id)}" value="Agregar">
+		</h:commandButton> | <h:link value="Volver" outcome="listaDeTareas" />
+						
+	</h:form>
+</h:body>
+</html>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	>
+
+<h:head>
+	<title>toDoList - Agregar usuario</title>
+</h:head>
+
+<h:body>	
+	<f:metadata>
+    	<!-- Si no esta loegueado -->
+    	<f:event type="preRenderView" listener="#{usuarioBean.verificarSesion}" />
+    	<!-- Si no es admin -->
+    	<f:event type="preRenderView" listener="#{usuarioBean.verificarUsuario}" />
+	</f:metadata>
+	
+	<ui:include src="/nabvar.xhtml" />
+
+	<div class="panel-body">
+	
+		<h:form>
+			<h3>Agregar nuevo usuario</h3>
+
+			<h:panelGrid columns="3">
+
+				<h:outputLabel for="usuario">Usuario:</h:outputLabel>
+				<h:inputText value="#{usuarioBean.usuario}" id="usuario"></h:inputText>
+				<br />
+				<br />
+
+				<h:outputLabel for="clave">Clave:</h:outputLabel>
+				<h:inputSecret value="#{usuarioBean.clave}" id="clave"></h:inputSecret>
+				<br />
+				<br />
+			
+				<h:outputLabel for="aprobado">Aprobado:</h:outputLabel>
+				<h:selectOneMenu value = "#{usuarioBean.aprobado}"> 
+   					<f:selectItem itemValue = "Activo" itemLabel = "Activo" /> 
+   					<f:selectItem itemValue = "Inactivo" itemLabel = "Inactivo" /> 
+				</h:selectOneMenu>
+			</h:panelGrid>
+			<br />
+			<h:commandButton action="#{usuarioBean.agregarUsuario}" value="Agregar">
+			</h:commandButton> | <h:link value="Volver" outcome="listaDeUsuarios" />
+		</h:form>
+	</div>
+	
+</h:body>
+</html>

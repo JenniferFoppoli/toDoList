@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title>toDoList - Ver tarea</title>
+	<link rel="stylesheet" type="text/css" href="css/table-style.css" />
+</h:head>
+
+<h:body>
+	
+	<ui:include src="/nabvar.xhtml" /> 
+	
+	<h2>Ver tarea</h2>
+		<div class="panel-body">
+	
+		<h:form id="formId" name="formId">
+			<!-- Guardo el antiguo nombre de la tarea para hacer el UPDATE -->
+			<h:inputHidden value="#{tareaBean.id}" id="idOld" name="formId:idAntiguo"></h:inputHidden> 
+			  
+			<h:panelGrid columns="3">
+				<h:outputLabel for="autor" >Autor:</h:outputLabel>
+				<h:outputLabel value="#{tareaBean.nombreUsuario}" id="autor" />
+				<br />
+				<br />
+				<h:outputLabel for="descripcion">Descripción:</h:outputLabel>
+				<h:outputLabel cols="30" rows="5" value="#{tareaBean.descripcion}" 
+				 id="descripcion"/> 				
+				<br />
+				<br />	
+				<h:outputLabel for="fecha" >Fecha:</h:outputLabel>
+				<h:outputLabel value="#{tareaBean.fecha}" id="fecha" />
+				<br />
+				<br />			
+				<h:outputLabel for="tipoTarea">Tipo:</h:outputLabel>				
+				<h:outputLabel value="Privada" rendered="#{tareaBean.tipoTarea == 1}"></h:outputLabel>
+				<h:outputLabel value="Pública" rendered="#{tareaBean.tipoTarea == 2}"></h:outputLabel>
+				<br />
+				<br />	
+				<h:outputLabel for="estadoTarea">Estado:</h:outputLabel>
+				<h:outputLabel value="Pendiente" rendered="#{tareaBean.estadoTarea == 1}"></h:outputLabel>
+				<h:outputLabel value="finalizada" rendered="#{tareaBean.estadoTarea == 2}"></h:outputLabel>
+				<br />
+				<br />
+				<h:outputLabel for="ModoTarea">Modo:</h:outputLabel>
+				<h:outputLabel value="Lectura" rendered="#{tareaBean.modoTarea == 1}"></h:outputLabel>
+				<h:outputLabel value="Escritura" rendered="#{tareaBean.modoTarea == 2}"></h:outputLabel>
+				<br />
+				<br />		
+				
+       	  	</h:panelGrid>
+       	  	<br />	 
+       	  
+			<h:link value="Volver" outcome="listaDeTareas" />
+				  	
+		</h:form>
+	</div>
+</h:body>
+</html>
