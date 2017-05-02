@@ -26,12 +26,13 @@
 	
 			<ul style="list-style-type:none; margin: 0; padding: 0;">
 				<li>
-					<h:link value="Listado usuarios" outcome="listaDeUsuarios" /> |
-		  			<h:link value="Alta usuario" outcome="agregarUsuario" /> | 
-		  			<!--  <h:link value="Eliminar usuario" outcome="EliminarUsuario" /> | --> 
-		  			<!--  <h:link value="Modificar usuario" outcome="ModificarUsuario" /> | -->
-		  			<!-- <h:link value="Ver tareas" outcome="listaDeTareas" /> | -->
-		  			<!--  <h:link value="Modificar tarea" outcome="modificarTarea" /> | -->  		
+					<h:link value="Listado usuarios" outcome="usuarios" /> |
+		  			<h:link value="Alta usuario" outcome="altaUsr" /> | 
+		  			<!--  <h:link value="Baja usuario" outcome="bajaUsr" /> | --> 
+		  			<!--  <h:link value="Editar usuario" outcome="editarUsr" /> | -->
+		  			<h:link value="Listado tareas" outcome="tareas" /> |
+		  			<h:link value="Crear tarea" outcome="altaTarea" /> |
+		  			<!--  <h:link value="Editar tarea" outcome="editarTarea" /> | -->  		
 		  			<h:form padding="top"> 
 		  				<h:commandLink id="Salir" value="Salir" align="right" action="#{usuarioBean.eliminarSesion}" /> 
 		  			</h:form>	  		
@@ -53,9 +54,9 @@
 	
 			<ul style="list-style-type:none; margin: 0; padding: 0;">
 				<li>
-					<h:link value="Ver tareas" outcome="listaDeTareas" /> |
-		  			<h:link value="Agregar tarea" outcome="agregarTarea" /> |
-		  			<!-- <h:link value="Modificar tarea" outcome="modificarTarea" /> |  --> 	  		
+					<h:link value="Listado tareas" outcome="tareas" /> |
+		  			<h:link value="Crear tarea" outcome="altaTarea" /> |
+		  			<!-- <h:link value="Editar tarea" outcome="editarTarea" /> |  --> 	  		
 		  			<h:form padding="top"> 
 		  				<h:commandLink id="Salir" value="Salir" align="right" action="#{usuarioBean.eliminarSesion}" /> 
 		  			</h:form>	  		
@@ -69,7 +70,7 @@
 	<h:panelGroup rendered="#{sessionScope.usuario.tipo == NULL}">
 		<ul style="list-style-type:none; margin: 0; padding: 0;">
 				<li>
-					<h:link value="Tareas públicas" outcome="listaDeTareas" /> |
+					<h:link value="Listado tareas" outcome="tareas" /> |
 		  			<h:link value="Registrarse" align="right" outcome="login" />
 		  		</li>
 			</ul>

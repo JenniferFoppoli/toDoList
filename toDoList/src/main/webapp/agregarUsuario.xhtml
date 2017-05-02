@@ -20,7 +20,7 @@
     	<f:event type="preRenderView" listener="#{usuarioBean.verificarUsuario}" />
 	</f:metadata>
 	
-	<ui:include src="/nabvar.xhtml" />
+	<ui:include src="/header.xhtml" />
 
 	<div class="panel-body">
 	
@@ -40,7 +40,7 @@
 				<br />
 			
 				<h:outputLabel for="aprobado">Aprobado:</h:outputLabel>
-				<h:selectOneMenu value = "#{usuarioBean.aprobado}"> 
+				<h:selectOneMenu value = "#{usuarioBean.condicion}"> 
    					<f:selectItem itemValue = "Activo" itemLabel = "Activo" /> 
    					<f:selectItem itemValue = "Inactivo" itemLabel = "Inactivo" /> 
 				</h:selectOneMenu>

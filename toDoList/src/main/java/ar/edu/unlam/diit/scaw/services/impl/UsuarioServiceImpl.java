@@ -19,23 +19,23 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 
 	@Override
-	public void update(String usuarioAntiguo, String nombreUsuario, int tipo, String condicion) {
-		usuarioDao.update(usuarioAntiguo, nombreUsuario, tipo, condicion);
+	public void modificarUsuario(String usuarioAntiguo, String usuario, int tipo, String condicion) {
+		usuarioDao.modificarUsuario(usuarioAntiguo, usuario, tipo, condicion);
 	}
 	
 	//@Override
-	public void eliminarUsuario(String nombreUsuario) {
-		usuarioDao.eliminarUsuario(nombreUsuario);
+	public void eliminarUsuario(String usuario) {
+		usuarioDao.eliminarUsuario(usuario);
 	}
 	
 	//@Override
-	public List<Usuario> modificarUsuario(String nombreUsuario) {
-		return usuarioDao.modificarUsuario(nombreUsuario);
+	public List<Usuario> update(String usrName) {
+		return usuarioDao.update(usrName);
 	}
 	
 	//@Override
-	public void cambiarEstadoUsuario(int id, String estado) {
-		usuarioDao.cambiarEstadoUsuario(id, estado);
+	public void cambiarCondicion(int id, String condicion) {
+		usuarioDao.cambiarCondicion(id, condicion);
 	}
 	
 	@Override
@@ -51,7 +51,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 		this.usuarioDao = usuarioDao;
 	}	
 
-	public List<Usuario> crearSesion(String nombreUsuario, String clave) {
-		return usuarioDao.crearSesion(nombreUsuario, clave);
+	public List<Usuario> crearSesion(String usrName, String password) {
+		return usuarioDao.crearSesion(usrName, password);
 	}
 }

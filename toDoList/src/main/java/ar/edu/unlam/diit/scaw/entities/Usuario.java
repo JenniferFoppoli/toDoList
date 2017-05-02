@@ -7,7 +7,7 @@ public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
-	private String nombreUsuario;
+	private String usuario;
 	private String clave;
 	private Integer tipo;
 	private String condicion;
@@ -23,12 +23,12 @@ public class Usuario implements Serializable {
 		this.id = id;
 	}
 
-	public String getNombreUsuario() {
-		return nombreUsuario;
+	public String getUsuario() {
+		return usuario;
 	}
 
-	public void setNombreUsuario(String nombreUsuario) {
-		this.nombreUsuario = nombreUsuario;
+	public void setUsuario(String usuarior) {
+		this.usuario = usuarior;
 	}
 
 	public String getClave() {
@@ -38,7 +38,7 @@ public class Usuario implements Serializable {
 	public void setClave(String clave) {
 		this.clave = clave;
 	}
-
+	
 	public Integer getTipo() {
 		return tipo;
 	}
@@ -46,14 +46,12 @@ public class Usuario implements Serializable {
 	public void setTipo(Integer tipo) {
 		this.tipo = tipo;
 	}
-
+	
 	public String getCondicion() {
 		return condicion;
 	}
 
 	public void setCondicion(String condicion) {
 		this.condicion = condicion;
-	}
-
-	
+	}	
 }

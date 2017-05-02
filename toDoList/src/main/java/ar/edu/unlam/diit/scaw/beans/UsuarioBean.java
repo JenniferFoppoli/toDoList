@@ -26,7 +26,7 @@ public class UsuarioBean implements Serializable {
 
 	private String usuario = null;
 	private String clave = null;
-	private Integer tipo = 2;
+	private Integer tipo = null;
 	private String condicion = null;
 	
 	ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"beans.xml"});
@@ -46,12 +46,12 @@ public class UsuarioBean implements Serializable {
 		return "listaDeUsuarios";
 	}
 	
-	public String update(String usuario, int tipo, String condicion) {
+	public String modificarUsuario(String usuario, int tipo, String condicion) {
 		
 		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 	    String usuarioAntiguo = ec.getRequestParameterMap().get("formId:usuarioAntiguo");
 		
-		service.update(usuarioAntiguo, usuario, tipo, condicion);
+		service.modificarUsuario(usuarioAntiguo, usuario, tipo, condicion);
 		
 		return "listaDeUsuarios";
 	}
@@ -63,8 +63,8 @@ public class UsuarioBean implements Serializable {
 		return "listaDeUsuarios";
 	}	
 	
-	public String modificarUsuario(String usuario) {
-		List<Usuario> list = service.modificarUsuario(usuario);
+	public String update(String usuario) {
+		List<Usuario> list = service.update(usuario);
 		if(list.isEmpty()) {
 			return "modificarUsuario";
 		}
@@ -73,13 +73,13 @@ public class UsuarioBean implements Serializable {
 		this.setCondicion(list.get(0).getCondicion());
 		this.setTipo(list.get(0).getTipo());		
 			
-		return "modificarUsuario";
+		return "listaDeUsuarios";
 	}
 	
-	public String cambiarEstadoUsuario(int id, String estado) {
+	public String cambiarCondicion(int id, String condicion) {
 		
-		if (estado != "") {
-			service.cambiarEstadoUsuario(id, estado);			
+		if (condicion != "") {
+			service.cambiarCondicion(id, condicion);				
 		}
 		return "usuarios";
 	}
@@ -91,7 +91,7 @@ public class UsuarioBean implements Serializable {
 		
 	private Usuario buildUsuario() {
 		Usuario usuario = new Usuario();
-		usuario.setNombreUsuario(this.usuario);
+		usuario.setUsuario(this.usuario);
 		usuario.setClave(this.clave);
 		usuario.setTipo(this.tipo);
 		usuario.setCondicion(this.condicion);
@@ -136,12 +136,13 @@ public class UsuarioBean implements Serializable {
 	}
 
 	public void setCondicion(String condicion) {
+		this.condicion = condicion;
 	}
 	
 	// Generacion de la sesion de usuario 
 	public String crearSesion(String nombreUsuario, String clave ) throws ServletException { 
 		
-		List<Usuario> list = service.crearSesion(usuario, clave);
+		List<Usuario> list = service.crearSesion(nombreUsuario, clave);
 		
 		if(list.isEmpty()) {	// usuario no registrado
 			FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
@@ -154,13 +155,13 @@ public class UsuarioBean implements Serializable {
 			//Se crea una nueva sesión para este usuario
 			Usuario usuario = new Usuario();
 			usuario.setId(list.get(0).getId());
-			usuario.setNombreUsuario(list.get(0).getNombreUsuario());
+			usuario.setUsuario(list.get(0).getUsuario());
 			usuario.setTipo(list.get(0).getTipo());
 			usuario.setCondicion(list.get(0).getCondicion());
 			
 			HttpSession session = request.getSession(true);
 			session.setAttribute("id", usuario.getId());
-			session.setAttribute("usuario", usuario.getNombreUsuario());
+			session.setAttribute("usuario", usuario.getUsuario());
 			session.setAttribute("tipo", usuario.getTipo());
 			session.setAttribute("condicion", usuario.getCondicion());
 			
@@ -188,7 +189,7 @@ public class UsuarioBean implements Serializable {
 	
 	//este metodo se debe incluir en las vistas para resstringir acceso no autorizado
 	public void verificarSesion() throws IOException{
-		
+		//TODO: verificar el tipo usuario -> comun/adm -> para ver en que pagina intenta acceder
 		if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario") == null) {
 
 			FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
@@ -197,10 +198,10 @@ public class UsuarioBean implements Serializable {
 	
 	//este metodo se debe incluir en las vistas para resstringir acceso a usuarios no administradores
 	public void verificarUsuario() throws IOException{
-		
+		//TODO: verificar el tipo usuario -> comun/adm -> para ver en que pagina intenta acceder
 		if(!(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("tipo").toString().contentEquals("1"))) {
 			// Si el usuario esta registrado y no es administrador es redirigido a la pag de tareas 
-			FacesContext.getCurrentInstance().getExternalContext().redirect("listaDeTareas.xhtml");
+			FacesContext.getCurrentInstance().getExternalContext().redirect("tareas.xhtml");
 		}
 	}
 

@@ -48,9 +48,9 @@
   		<h:column>
   			<f:facet name="header">Habilitar</f:facet>	
   			<h:form>	 		  			
-	  			<h:commandLink id="Activo" value="Activar" action="#{usuarioBean.changeUsrState(usuario.id,'Activo')}" />	  			
+	  			<h:commandLink id="Activo" value="Activar" action="#{usuarioBean.cambiarCondicion(usuario.id,'Activo')}" />	  			
 	  			/
-	  			<h:commandLink id="Inactivo" value="Desactivar" action="#{usuarioBean.changeUsrState(usuario.id,'Inactivo')}" />	  				  			
+	  			<h:commandLink id="Inactivo" value="Desactivar" action="#{usuarioBean.cambiarCondicion(usuario.id,'Inactivo')}" />	  				  			
   			</h:form>   		 
   		</h:column>	
   		
@@ -65,7 +65,7 @@
 	</h:dataTable>
 	<!-- 
 	<h4>
-		<h:outputLabel 	value="Usuario afecado: #{usuarioBean.usuario}" 
+		<h:outputLabel 	value="Usuario afectado: #{usuarioBean.usuario}" 
 		rendered="#{usuarioBean.usuario != NULL}" /> 	
 	</h4>
 	 -->

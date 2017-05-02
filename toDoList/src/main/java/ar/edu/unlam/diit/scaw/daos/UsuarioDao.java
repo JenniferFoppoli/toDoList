@@ -6,12 +6,11 @@ import ar.edu.unlam.diit.scaw.entities.Usuario;
 
 public interface UsuarioDao {
 
-	public void update(String usuarioAntiguo, String nombreUsuario, int tipo, String condicion);
 	public void agregarUsuario(Usuario usuario);
+	public void modificarUsuario(String usuarioAntiguo, String usuario, int tipo, String condicion);
+	public void eliminarUsuario(String usuario);
+	public void cambiarCondicion(int id, String condicion);
+	public List<Usuario> crearSesion(String usrName, String password);
 	public List<Usuario> findAll();
-	public void eliminarUsuario(String nombreUsuario);
-	public List<Usuario> modificarUsuario(String nombreUsuario);
-	public void cambiarEstadoUsuario(int id, String estado);
-	public List<Usuario> crearSesion(String nombreUsuario, String clave);
-	
+	public List<Usuario> update(String usuario);
 }

@@ -1,39 +1,16 @@
-INSERT INTO TIPO_USUARIO (DESCRIPCION) 
-VALUES 	('Admin');
-
-INSERT INTO TIPO_USUARIO (DESCRIPCION) 
-VALUES 	('Usuario');
-
-INSERT INTO USUARIOS (USARIO, CLAVE, TIPO, CONDICION) 
-VALUES 	('admin','1234',1,'Activo');
-
-INSERT INTO USUARIOS (USUARIO, CLAVE, TIPO, CONDICION) 
-VALUES 	('aldu', '1234',2,'Activo'),
-		('rocio', '1234',2,'Activo'),
-		('jenni', '1234',2,'Inactivo');
-		
-INSERT INTO ESTADO_TAREA (DESCRIPCION) 
-VALUES ('Pendiente');
-
-INSERT INTO ESTADO_TAREA (DESCRIPCION) 
-VALUES ('Completa');
-
-INSERT INTO MODO_TAREA (DESCRIPCION) 
-VALUES ('Lectura');
-
-INSERT INTO MODO_TAREA (DESCRIPCION) 
-VALUES ('Escritura');
-
-INSERT INTO TIPO_TAREA (DESCRIPCION) 
-VALUES ('Privada');
-
-INSERT INTO TIPO_TAREA (DESCRIPCION) 
-VALUES ('Publica');
-
-INSERT INTO TAREAS (DESCRIPCION, FECHA, CREADO_POR, IDESTADO, IDTIPO, IDMODO) 
-VALUES ('CREAR BASE DE DATOS', '2017-04-16', 1, 1, 1, 2);
-
-INSERT INTO TAREAS (DESCRIPCION, FECHA, CREADO_POR, MODIFICADO_POR, IDESTADO, IDTIPO, IDMODO) 
-VALUES ('ACTUALIZAR BASE DE DATOS', '2017-04-17', 1, 2, 2, 1, 1);
+INSERT INTO tipoUsuario (nombre) VALUES ('Admin');
+INSERT INTO tipoUsuario (nombre) VALUES ('Usuario');
+INSERT INTO usuario (usuario, password, tipo, aprobado) 
+	VALUES ('admin','admin',1,'S');
+INSERT INTO usuario (usuario, password,tipo, aprobado) 
+	VALUES ('pepe', '1234',2,'S');
+INSERT INTO estado (nombre) VALUES ('Pendiente');
+INSERT INTO estado (nombre) VALUES ('Finalizado');
+INSERT INTO tipoTarea (nombre) VALUES ('Privada');
+INSERT INTO tipoTarea (nombre) VALUES ('Publica');
+INSERT INTO tarea (titulo, descripcion, estado, creado_por, tipoTarea) 
+	VALUES ('tarea', 'test',1,2,1);
+INSERT INTO tarea (titulo, descripcion, estado, creado_por, tipoTarea) 
+	VALUES ('tarea1','test',2,2,2);
 
 --COMMIT;

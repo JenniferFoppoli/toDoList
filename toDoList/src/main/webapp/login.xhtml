@@ -11,7 +11,8 @@
 	<link rel="stylesheet" type="text/css" href="css/table-style.css" />
 </h:head>
 
-<h:body>	
+<h:body>
+	<ui:include src="/header.xhtml" />	
 	<div class="panel-body">
 				
 		<h:form>
@@ -26,9 +27,8 @@
 			</h:panelGrid>
 			<br></br>
 			
-			<h:commandButton value="Ingresar" action="#{usuarioBean.crearSesion(usuarioBean.usuario, usuarioBean.clave)}"></h:commandButton>
+			<h:commandButton value="Ingresar" action="#{usuarioBean.crearSesion(usuarioBean.usuario, usuarioBean.c)}"></h:commandButton>
 		</h:form>
 	</div>
-	<ui:include src="/navbar.xhtml" />
 </h:body>
 </html>

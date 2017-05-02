@@ -4,10 +4,10 @@
         <welcome-file>faces/login.xhtml</welcome-file>
     </welcome-file-list>
     
-     <!-- Spring Load -->
+    <!-- Spring Load -->
     <context-param>
     	<param-name>contextConfigLocation</param-name>
-    	<param-value>faces/beans.xml</param-value>
+    	<param-value>classpath:beans.xml</param-value>
 	</context-param>
      
     <listener>
@@ -38,7 +38,7 @@
       <servlet-name>Faces Servlet</servlet-name>
       <url-pattern>*.faces</url-pattern>
    </servlet-mapping>
-       
+    
     <session-config>
         <session-timeout>
             30
